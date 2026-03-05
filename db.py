@@ -49,7 +49,7 @@ class dbthingy:
     def updRecord(self, tableName:str, newvalue:str, sqlcond:str):
         #I do not think you can regex for a valid sql statement lmao
         for table in TABLE_GEN:
-            if tableName == table[TNAME_INDEX] and (re.search(table[TREGEX_INDEX],newvalue))!= None:
+            if tableName == table[TNAME_INDEX]:
                 self.crsr.execute(gener_UPDATE.format(table=tableName,changed=newvalue,conditions=sqlcond)) 
                 self.cnctn.commit
                 #this method won't take care of it, but you can use something like gener_cond yourself to

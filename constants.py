@@ -12,7 +12,7 @@ __EXAMPLE_SQLCOM:str = '''
                         name varchar[35]
                     );
                 '''
-__EXAMPLE_TABLE_REGEX:str = r"^\([\"\'].+[\"\'],[\"\'].+[\"\'],[\"\'].+[\"\']\);$"    #beautiful isn't it? lmao
+__EXAMPLE_TABLE_REGEX:str = r"^\([\"\'].+[\"\'],[\"\'].+[\"\'],[\"\'].+[\"\']\)$"    #beautiful isn't it? lmao
 
 
 TEMPL_SQLCOM:str = '''
@@ -20,7 +20,7 @@ TEMPL_SQLCOM:str = '''
                 {attributes_formatted}
                 );
 '''
-TEMPL_TABLE_REGEX:str = "^\({delimiters}\);$"
+TEMPL_TABLE_REGEX:str = "^\({delimiters}\)$"
 
 #anyway this all isn't strictly necessary its just my way of ensuring that if you add more tables
 #you add all these other things too
@@ -38,12 +38,12 @@ TREGEX_INDEX:int = 2
 gener_INSERT:str = "INSERT INTO {table} VALUES {values};"
 gener_UPDATE:str = "UPDATE {table} SET {changed} WHERE {conditions};"
 gener_DELETE:str = "DELETE FROM {table} WHERE {conditions};"
-gener_SELECT:str = "SELECT {csvalues} FROM {table} WHERE {conditions}"
+gener_SELECT:str = "SELECT {csvalues} FROM {table} {conditions};"
     #if you want  HAVING yer on yer own
     #also simple JOINS but who does those
 
 #simple condition you can slap into {conditions} that should work for nearly everything?
-gener_CONDITION:str = "{values} {operation} {condition}"
+gener_CONDITION:str = "{values} {operation} {condition};"
 
 #for anything more complex just make unholy concactenations of 
 #gener_SELECT(value, table, gener_CONDITION(value, "IN(" , gener_SELECT(...)))
